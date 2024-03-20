@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pancake Recipe Calculator</title>
+</head>
+<body>
+    <h1>Pancake Recipe Calculator</h1>
+    <label for="servings">Enter number of servings:</label>
+    <input type="number" id="servings" min="1" value="1">
+    <button onclick="calculateIngredients()">Calculate</button>
+
+    <div id="result"></div>
+
+    <script src="recipe.js"></script>
+    <script>
+        function calculateIngredients() {
+            const servings = parseInt(document.getElementById("servings").value);
+            const recipe = new PancakeRecipe(servings);
+            const ingredients = recipe.calculateIngredients();
+            
+            // Display result
+            const resultDiv = document.getElementById("result");
+            resultDiv.innerHTML = `
+                <h2>Ingredients for ${servings} servings:</h2>
+                <p>Flour: ${ingredients.flour.amount} grams</p>
+                <p>Eggs: ${ingredients.eggs.amount}</p>
+                <p>Milk: ${ingredients.milk.amount} milliliters</p>
+                <p>Salt: ${ingredients.salt.amount} grams</p>
+                <p>Baking Powder: ${ingredients.bakingPowder.amount} grams</p>
+            `;
+        }
+    </script>
+</body>
+</html>
